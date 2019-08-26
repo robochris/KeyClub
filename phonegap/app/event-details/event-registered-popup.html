@@ -1,0 +1,16 @@
+<div ng-controller="EventRegPopController as RegPop" class="event-registered-popup">
+    <div class="modal-header">
+        <i class="fa fa-check"></i>
+    </div>
+    <div class="modal-body">
+        <h3>Woo-Hoo!</h3>
+        <br />
+        <p>You are now registered for:</p>
+        <div style="color: white;">{{RegPop.Event.title}}</div>
+        <div style="color: white;">{{RegPop.Event.date | date:'EEE, MMM d, y h:mm a'}}</div>
+        <!--You will receive a reminder notification the day before the event.-->
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary btn-block" type="button" ng-click="$close()">OK</button>
+    </div>
+</div>

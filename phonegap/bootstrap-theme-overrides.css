@@ -1,0 +1,22 @@
+.form-group label {
+}
+
+.form-control {
+    background-color: #201E21;
+    color: white;
+}
+
+.btn-success {
+    background-color: #4DB300;
+    border-color: #388200;
+}
+
+h1 {
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #2a9fd6;
+}
+
+body {
+    color: #bbbbbb;
+}

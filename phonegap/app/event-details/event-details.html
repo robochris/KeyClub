@@ -1,0 +1,102 @@
+<div ng-controller="EventDetailsController as eventDetails" class="event-details-page">
+    <div class="officer-toolbar clearfix" ng-if="base.currentUser.isOfficer">
+        <span class="pull-right">
+            <div class="btn-group">
+                <button class="btn btn-default" ui-sref="edit-event({eventId: eventDetails.eventId})">
+                    <i class="fa fa-pencil"></i> Edit
+                </button>
+                <button class="btn btn-default" ng-click="eventDetails.Delete()">
+                    <i class="fa fa-trash"></i> Delete
+                </button>
+            </div>
+        </span>
+    </div>
+    <div class="detail-container" ng-if="eventDetails.Event" style="margin-left: 10px; margin-right: 10px;">
+
+        <div class="form-group">
+            <h1 class="title">{{eventDetails.Event.title}}</h1>
+            <div class="date">{{eventDetails.Event.date | date:'EEE, MMM d, y h:mm a'}} - {{eventDetails.Event.endDate | date:'h:mm a'}}</div>
+        </div>
+
+        <div class="registration">
+            <div class="btn-register" ng-click="eventDetails.register()" ng-class="{selected: eventDetails.Event.registered}" ng-if="base.currentUser.isOfficer || eventDetails.Event.registered || !eventDetails.Event.full">I'm Going</div>
+            <div class="btn-register" style="border: 2px solid #cc0000; color: #cc0000; " ng-if="!(base.currentUser.isOfficer || eventDetails.Event.registered || !eventDetails.Event.full)">Event Full</div>
+            <div class="btn-unregister" ng-click="eventDetails.unregister()" ng-class="{selected: !eventDetails.Event.registered}">I'm Not Going</div>
+        </div>
+
+        <div class="form-group">
+            <label>Location</label>
+            <div>
+                {{eventDetails.Event.location}}
+            </div>
+            <div ng-if="eventDetails.Event.location.length == null">
+                No location for this event.
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <div>
+                {{eventDetails.Event.description}}
+            </div>
+            <div ng-if="eventDetails.Event.description.length == null">
+                No Description about this event.
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Requirements</label>
+            <div>
+                {{eventDetails.Event.requirements}}
+            </div>
+            <div ng-if="eventDetails.Event.requirements.length == null">
+                No Requirements for this event.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Attending Officers</label>
+            <div ng-if="eventDetails.Event.officerPeople.length == 0">
+                Nobody yet.
+                <a ng-if="base.currentUser.isOfficer" class="text-success" ng-click="eventDetails.register()">Be the first!</a>
+            </div>
+            <ul class="people list-unstyled">
+                <li ng-repeat="person in eventDetails.Event.officerPeople" class="repeated-item clearfix" ui-sref="edit-person({personId: person._id})">
+                    <avatar person="person"></avatar>
+                    {{person.displayName}}
+                </li>
+            </ul>
+        </div>
+
+        <div class="form-group">
+            <label class="clearfix" style="display: block;">Attending Volunteers <span class="slots-available">{{eventDetails.Event.totalSlots - eventDetails.Event.volunteers.length}} available</span></label>
+            <div ng-if="eventDetails.Event.volunteerPeople.length == 0">
+                Nobody yet.
+                <a ng-if="!base.currentUser.isOfficer && eventDetails.Event.totalSlots - eventDetails.Event.volunteers.length > 0" class="text-success" ng-click="eventDetails.register()">Be the first!</a>
+            </div>
+            <ul class="people list-unstyled">
+                <li ng-repeat="person in eventDetails.Event.volunteerPeople" class="repeated-item clearfix" ui-sref="edit-person({personId: person._id})">
+                    <avatar person="person"></avatar>
+                    {{person.displayName}}
+                    <a ng-show="base.currentUser.isOfficer" style="padding: 0 15px; float: right;"
+                    ng-click="eventDetails.removePerson(person._id); $event.stopPropagation()"
+                    title="Remove"
+                    >
+                        <i class="fa fa-times"></i>
+                    </a>
+                </li>
+            </ul>
+            <div ng-if="base.currentUser.isOfficer" style="margin-bottom: 20px;" class="clearfix">
+                <a ng-click="eventDetails.showAddPerson = !eventDetails.showAddPerson">Add Person</a>
+                <div ng-show="eventDetails.showAddPerson">
+                    <div class="col-xs-6">
+                        <select ng-model="eventDetails.addPersonId" ng-options="person._id as person.displayName for person in eventDetails.filterPeople()" class="form-control">
+                            <option value="">Person</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="button" value="Add Person" ng-click="eventDetails.addPerson()" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

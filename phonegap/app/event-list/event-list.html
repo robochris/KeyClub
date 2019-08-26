@@ -1,0 +1,25 @@
+<div ng-controller="EventListController as eventList">
+    <div ng-if="base.currentUser">
+        <ul class="event-list list-unstyled">
+            <li ui-sref="edit-event" style="text-align: center; padding: 10px 0;" ng-show="base.currentUser.isOfficer">
+                <i class="fa fa-plus"></i> Add Event
+            </li>
+            <li ng-repeat="event in eventList.allEvents" ui-sref="event-details({eventId: event._id})" class="repeated-item animate">
+                <div class="event-badge">
+                    <span class="badge" ng-show="!event.full">{{event.slotsAvailable}}</span>
+                    <span class="badge full" ng-show="event.full">full</span>
+                    <div>
+                        <i class="is-registered fa fa-check" ng-show="event.registered"></i>
+                    </div>
+                </div>
+                <div class="title">{{event.title}}</div>
+                <div class="date">{{event.date | date:'EEE, MMM d, h:mm a'}}</div>
+            </li>
+        </ul>
+        <div ng-if="eventList.eventsLoaded && eventList.allEvents.length == 0" style="text-align: center; margin-top: 40px;">
+            <i class="fa fa-meh-o" style="color: #B9B91B; font-size: 60px; margin-bottom: 10px;"></i><br />
+            There are no upcoming events.<br />
+            Check back later.
+        </div>
+    </div>
+</div>

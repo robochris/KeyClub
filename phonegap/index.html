@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Keychain for Key Club</title>
+    <!-- build:css styles/app.css-->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bootstrap-theme.css">
+    <link rel="stylesheet" href="bootstrap-theme-overrides.css">
+    <link rel="stylesheet" href="bower_components/nz-toggle/dist/nz-toggle.min.css">
+    <link rel="stylesheet" href="bower_components/ngImgCrop/compile/unminified/ng-img-crop.css">
+    <link rel="stylesheet" href="site.css">
+    <link rel="stylesheet" href="pages.css">
+
+    <link rel="stylesheet" href="app/auth/auth.css">
+    <link rel="stylesheet" href="app/base/base.css">
+    <link rel="stylesheet" href="app/edit-person/edit-person.css">
+    <link rel="stylesheet" href="app/event-list/event-list.css">
+    <link rel="stylesheet" href="app/event-details/event-details.css">
+    <link rel="stylesheet" href="app/event-list/event-list.css">
+    <link rel="stylesheet" href="app/event-list/event-list.css">
+    <link rel="stylesheet" href="app/my-profile/my-profile.css">
+    <link rel="stylesheet" href="app/person-list/person-list.css">
+
+
+    <!-- endbuild -->
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+</head>
+
+<body>
+    <div ui-view></div>
+
+    <!-- build:js js/lib.js -->
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.min.js"></script>
+    <script src="bower_components/angular-off-click/offClick.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/nz-toggle/dist/nz-toggle.min.js"></script>
+    <script src="lib/ng-img-crop-MODIFIED.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js js/app.js -->
+
+    <script src="app.js"></script>
+
+    <script src="app/base/base-controller.js"></script>
+    <script src="app/core/directives/animate-click.js"></script>
+    <script src="app/core/directives/avatar.js"></script>
+    <script src="app/core/directives/error-src.js"></script>
+    <script src="app/core/services/ad-service.js"></script>
+    <script src="app/core/services/cache-service.js"></script>
+    <script src="app/core/services/dialog-service.js"></script>
+    <script src="app/core/services/event-service.js"></script>
+    <script src="app/core/services/http-request-service.js"></script>
+    <script src="app/core/services/person-service.js"></script>
+    <script src="app/core/services/settings-service.js"></script>
+    <script src="app/core/services/notification-service.js"></script>
+    <script src="app/event-details/event-details-controller.js"></script>
+    <script src="app/event-details/event-registered-popup-controller.js"></script>
+    <script src="app/auth/account-denied-controller.js"></script>
+    <script src="app/auth/sign-up-controller.js"></script>
+    <script src="app/auth/auth-service.js"></script>
+    <script src="app/auth/login-controller.js"></script>
+    <script src="app/auth/forgot-password-controller.js"></script>
+    <script src="app/auth/forgot-password-2-controller.js"></script>
+    <script src="app/auth/select-group-controller.js"></script>
+    <script src="app/event-list/event-list-controller.js"></script>
+    <script src="app/person-list/person-list-controller.js"></script>
+    <script src="app/person-list/person-list-controller-service.js"></script>
+    <script src="app/edit-person/edit-person-controler.js"></script>
+    <script src="app/edit-event/edit-event-controller.js"></script>
+    <script src="app/my-events/my-events-controller.js"></script>
+    <script src="app/my-profile/my-profile-controller.js"></script>
+    <script src="app/start-page/start-page-controller.js"></script>
+
+    <!-- endbuild -->
+
+    <!-- build:js js/templates.js -->
+    <!-- inject:templates:js -->
+    <!-- endinject -->
+    <!-- endbuild -->
+
+    <script type="text/javascript">
+        /**
+         * Determine whether the file loaded from PhoneGap or not
+         */
+        function isPhoneGap() {
+            return (!!window.cordova || !!window.PhoneGap || !!window.phonegap)
+            && /^file:\/{3}[^\/]/i.test(window.location.href)
+            && /ios|iphone|ipod|ipad|android/i.test(navigator.userAgent);
+        }
+
+        window.isPhoneGap = isPhoneGap();
+
+
+        function onDeviceReady() {
+            angular.bootstrap(document, ['agApp']);
+        };
+
+        document.addEventListener('deviceready', onDeviceReady, false);
+
+        window.onload = function () {
+            if (!window.cordova)
+                onDeviceReady();
+        }
+    </script>
+
+</body>
+
+</html>

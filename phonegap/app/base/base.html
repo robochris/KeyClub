@@ -1,0 +1,62 @@
+<div ng-controller="BaseController as base">
+    <div ng-class="{'toolbar-showing': base.currentUser}">
+        <div ng-show="base.currentUser">
+            <div class="toolbar">
+                <span class="cursor-pointer" id="showMenuButton" ng-click="base.showMenu = !base.showMenu">
+                    <span class="menu-button">
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <span class="app-title">
+                        Keychain
+                    </span>
+                </span>
+
+
+                <div class="pull-right" ng-show="base.currentUser">
+                    <i class="fa fa-refresh refresh-button pull-left" ng-click="base.refresh()" animate-click></i>
+                    <div id="showCurrentUserButton" ng-click="base.showCurrentUser = !base.showCurrentUser" class="current-user pull-right">
+                        <avatar person="base.currentUser"></avatar>
+                    </div>
+                </div>
+            </div>
+            <div class="current-user-dropdown" ng-show="base.currentUser && base.showCurrentUser" off-click="base.showCurrentUser = false" off-click-filter="'#showCurrentUserButton'">
+                <div class="current-user-name">
+                    {{base.currentUser.displayName}}
+                </div>
+                <div>
+                    <a ui-sref="my-profile" ng-click="base.showCurrentUser = false">Your Profile</a>
+                </div>
+                <div>
+                    <a ng-click="base.signOut()">Sign Out</a>
+                </div>
+            </div>
+
+            <div class="side-menu" ng-show="base.showMenu" off-click="base.showMenu = false" off-click-filter="'#showMenuButton'">
+                <ul class="list-unstyled">
+                    <li>
+                        <a ui-sref="event-list" ng-click="base.showMenu = false">Events</a>
+                    </li>
+                    <li>
+                        <a ui-sref="my-events" ng-click="base.showMenu = false">Your Events</a>
+                    </li>
+                    <li>
+                        <a ui-sref="person-list" ng-click="base.showMenu = false">People</a>
+                    </li>
+                </ul>
+                <div style="position: fixed; bottom: 0; padding: 10px;">
+                    v {{base.settingsService.version}}
+                </div>
+            </div>
+        </div>
+
+        <div class="toolbar-clear">
+            <div ui-view></div>
+        </div>
+        <div class="overlay" ng-show="base.showMenu"></div>
+        <div class="busy-animation-lines" ng-show="base.$http.pendingRequests.length > 0">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>

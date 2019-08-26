@@ -1,0 +1,88 @@
+html,
+body {
+}
+
+h1 {
+    font-size: 20px;
+}
+
+.info-text {
+    padding: 10px;
+}
+
+.spin-once-add {
+    animation: fa-spin .5s linear;
+}
+
+a {
+    cursor: pointer;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.repeated-item {
+    border-top: 1px solid rgb(53, 51, 56);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(20, 20, 27)), color-stop(100%, rgb(10, 10, 17)));
+}
+
+.repeated-item:last-child {
+    border-bottom: 1px solid rgb(53, 51, 56);
+}
+
+.shadow-z1 {
+    box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.shadow-z2 {
+    box-shadow: 0px 8px 17px rgba(0, 0, 0, 0.2);
+}
+
+.shadow-z3 {
+    box-shadow: 0px 17px 50px rgba(0, 0, 0, 0.19);
+}
+
+.shadow-z4 {
+    box-shadow: 0px 16px 28px 0 rgba(0, 0, 0, 0.22);
+}
+
+.shadow-z5 {
+    box-shadow: 0px 27px 24px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.7);
+    transition: opacity .3s ease-in-out;
+    will-change: transform;
+}
+
+.overlay.ng-hide {
+    opacity: 0;
+}
+
+.kc-avatar {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    font-size: 48px;
+}
+
+.kc-avatar img {
+    width: 100%;
+    vertical-align: top;
+}
+
+.kc-avatar .officer-icon {
+    width: 35%;
+    height: 35%;
+    position: absolute;
+    bottom: -4%;
+    right: -4%;
+}

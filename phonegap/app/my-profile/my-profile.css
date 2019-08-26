@@ -1,0 +1,49 @@
+.photo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.photo img {
+    border: #989595 solid 5px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+}
+
+.photo .capture-type {
+    position: absolute;
+    padding-left: 10px;
+    padding-right: 10px;
+    top: 40px;
+    width: 200px;
+    z-index: 1;
+}
+
+.cropArea {
+    background: #060606;
+    overflow: hidden;
+    position: fixed;
+    top: 63px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.cropArea .img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 50px;
+}
+
+.cropArea .cropToolbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+}

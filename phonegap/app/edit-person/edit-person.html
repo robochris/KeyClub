@@ -1,0 +1,89 @@
+<div ng-controller="EditPersonController as editPerson">
+    <form style="margin-left: 10px; margin-right: 10px;">
+        <div style="margin-bottom: 20px;">
+            <div style="margin-top: 10px;">
+                <avatar style="float: left; margin-right: 5px;" person="editPerson.selectedPerson"></avatar>
+                <div>
+                    <div style="font-weight: bold; font-size: 18px;">
+                        {{editPerson.selectedPerson.displayName}}
+                    </div>
+                    {{editPerson.selectedPerson.isOfficer ? 'Officer' : 'Member'}}
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="base.currentUser.isOfficer">
+            <div class="panel panel-primary" style="background-color: transparent;">
+                <div class="panel-heading">
+                    Edit Person
+                </div>
+                <div class="panel-body">
+                    <div class="form-group toggle-form-group clearfix" style="margin-bottom: 30px;">
+                        <label>Name</label>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <input type="text" class="form-control" ng-model="editPerson.selectedPerson.firstName" placeholder="First Name" />
+                            </div>
+                            <div class="col-xs-6">
+                                <input type="text" class="form-control" ng-model="editPerson.selectedPerson.lastName" placeholder="Last Name" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group toggle-form-group clearfix" style="margin-bottom: 30px;">
+                        <label>Approval</label>
+                        <div class="pull-right" style="text-align: right">
+                            <nz-toggle ng-model="editPerson.selectedPerson.approved" color-true="'#2a9fd6'" color-false="'#cc0000'"></nz-toggle>
+                            <div ng-show="editPerson.selectedPerson.approved === true">Approved</div>
+                            <div ng-show="editPerson.selectedPerson.approved !== true">Denied</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group toggle-form-group clearfix" ng-disabled="!editPerson.selectedPerson.approved">
+                        <label>Officer</label>
+                        <div class="pull-right" style="text-align: right;">
+                            <nz-toggle color-true="'#2a9fd6'" color-false="'#424242'" ng-model="editPerson.selectedPerson.isOfficer" ng-disabled="!editPerson.selectedPerson.approved"></nz-toggle>
+                            <div ng-show="editPerson.selectedPerson.isOfficer === true">Officer</div>
+                            <div ng-show="editPerson.selectedPerson.isOfficer !== true">Member</div>
+                        </div>
+                    </div>
+                    <div class="form-group toggle-form-group clearfix">
+                        <label>Reset Picture</label>
+                        <div class="pull-right" style="text-align: right;">
+                            <nz-toggle color-true="'#cc0000'" color-false="'#424242'" ng-model="editPerson.selectedPerson.resetPicture"></nz-toggle>
+                        </div>
+                        <div ng-show="editPerson.selectedPerson.resetPicture === true">
+                            {{editPerson.selectedPerson.displayName}}'s picture will be reset.
+                            <br /> This should be used if the picture is inappropriate.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <hr />
+                        <input type="button" class="btn btn-primary" value="Save" ng-click="editPerson.save()" />
+                        <input type="button" class="btn btn-default" value="Cancel" ui-sref="person-list" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 30px; font-weight: bold; font-size: larger;">Upcoming events</div>
+        <div ng-show="editPerson.events.length === 0">
+            <i class="fa fa-info-circle"></i> {{editPerson.selectedPerson.displayName}} does not have any upcoming events
+        </div>
+        <div ng-show="!(editPerson.events.length === 0)">
+            {{editPerson.selectedPerson.displayName}} is going to:
+        </div>
+        <ul class="event-list list-unstyled">
+            <li ng-repeat="event in editPerson.events" ui-sref="event-details({eventId: event._id})" class="repeated-item animate">
+                <div class="event-badge">
+                    <span class="badge" ng-show="!event.full">{{event.slotsAvailable}}</span>
+                    <span class="badge full" ng-show="event.full">full</span>
+                    <div>
+                        <i class="is-registered fa fa-check" ng-show="event.registered"></i>
+                    </div>
+                </div>
+                <div class="title">{{event.title}}</div>
+                <div class="date">{{event.date | date:'EEE, MMM d, h:mm a'}}</div>
+            </li>
+        </ul>
+    </form>
+</div>

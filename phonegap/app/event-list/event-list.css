@@ -1,0 +1,39 @@
+.event-list li {
+    position: relative;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    padding-left: 40px;
+    cursor: pointer;
+}
+
+.event-list .title {
+    font-size: 23px;
+    font-weight: 300;
+    line-height: 1.45em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #eee;
+}
+
+.event-list .event-badge {
+    text-align: center;
+    position: absolute;
+    left: 3px;
+    top: 14px;
+    width: 35px;
+}
+
+.event-list .event-badge .is-registered {
+    margin-top: 5px;
+    color: #4DB300;
+}
+
+.event-list .event-badge .badge {
+    color: #060606;
+}
+
+.event-list .event-badge .full {
+    background-color: #060606;
+    color: #ddd;
+}

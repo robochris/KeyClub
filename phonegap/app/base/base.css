@@ -1,0 +1,168 @@
+.toolbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    transition: all .3s ease-in-out;
+    z-index: 2;
+    height: 64px;
+    background-color: #3474DE;
+    padding: 5px;
+    color: white;
+    line-height: 54px;
+    will-change: transform;
+}
+
+.toolbar-showing .toolbar-clear {
+    margin-top: 63px;
+    z-index: 0;
+    position: relative;
+    padding-top: 1px; /* disable margin collapsing */
+}
+
+
+.app-title {
+    font-size: 20px;
+}
+
+.toolbar .menu-button {
+    padding: 20px 5px 20px 10px;
+}
+
+.toolbar .menu-button i {
+    font-size: 20px;
+}
+
+.toolbar .refresh-button {
+    padding: 20px;
+    font-size: 20px;
+}
+
+
+.toolbar .kc-avatar {
+    margin-right: 5px;
+}
+
+.current-user-dropdown {
+    position: fixed;
+    top: 64px;
+    right: 0;
+    max-width: 250px;
+    background-color: #242424;
+    color: #fff;
+    z-index: 1;
+    padding: 10px;
+    font-size: 20px;
+    text-align: right;
+    transition: transform .3s ease-in-out;
+    will-change: transform;
+}
+
+.current-user-dropdown.ng-hide {
+    transform: translateX(270px);
+}
+
+.current-user-dropdown .current-user-name {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 10px;
+}
+
+.current-user-dropdown i {
+    color: #949494;
+}
+
+.current-user-dropdown .btn-social-icon {
+    margin-top: -3px;
+    margin-right: 5px;
+}
+
+.current-user-dropdown a {
+    display: block;
+    padding: 10px 0;
+    font-size: 20px;
+}
+
+.side-menu {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    bottom: 0;
+    width: 200px;
+    background-color: #242424;
+    color: #fff;
+    z-index: 1;
+    transition: transform .3s ease-in-out;
+    will-change: transform;
+}
+
+.side-menu.ng-hide {
+    transform: translateX(-220px);
+}
+
+.side-menu a {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.side-menu a:active,
+.side-menu a:visited
+{
+    color: white;
+    text-decoration: none;
+}
+
+
+
+.busy-animation-lines {
+	height: 3px;
+	position: fixed;
+	overflow: hidden;
+	top:64px;
+	left:0px;
+	right:0px;
+    z-index:1;
+    background: #060606;
+    transition: opacity .3s ease-in-out;
+    opacity: 1;
+}
+.busy-animation-lines.ng-hide {
+    opacity: 0;
+}
+
+.busy-animation-lines div {
+	width: 100%;
+	height: 3px;
+	position: absolute;
+	animation: busy-animation-lines 5s linear infinite;
+	transform-origin: 0;
+}
+.busy-animation-lines div:nth-of-type(1) {
+	background-color: #9933CC;
+}
+.busy-animation-lines div:nth-of-type(2) {
+	background-color: #2a9fd6;
+	animation-delay: -1.5s;
+}
+.busy-animation-lines div:nth-of-type(3) {
+	background-color: #2a9fd6;
+	animation-delay: -4.5s;
+}
+
+@keyframes busy-animation-lines {
+	0% {
+		transform: translateX(-10%) scaleX(0);
+	}
+	25% {
+		transform: translateX(10%) scaleX(.61);
+	}
+	80% {
+		transform: translateX(100%) scaleX(.15);
+	}
+	100% {
+		transform: translateX(-15%) scaleX(.15);
+	}
+}

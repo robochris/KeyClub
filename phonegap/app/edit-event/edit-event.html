@@ -1,0 +1,53 @@
+<div ng-controller="EditEventController as edit">
+    <form name="edit.form" novalidate ng-submit="edit.save()" style="margin-left: 10px; margin-right: 10px;">
+        <h1 ng-if="!edit.eventId">
+            Add a new event
+        </h1>
+        <h1 ng-if="edit.eventId">
+            Edit an event
+        </h1>
+
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" class="form-control" ng-model="edit.event.title" required name="title" />
+            <div class="text-danger" ng-show="edit.submitted && edit.form.title.$error.required">Title is required.</div>
+        </div>
+        <div class="form-group">
+            <label>Date</label>
+            <input type="date" class="form-control" ng-model="edit.event.date" min="{{edit.today | date:'yyyy-MM-dd'}}" required name="date" />
+            <div class="text-danger" ng-show="edit.submitted && edit.form.date.$error.required">Date is required.</div>
+            <div class="text-danger" ng-show="edit.submitted && edit.form.date.$error.email">Date is invalid.</div>
+        </div>
+        <div class="form-group">
+            <label>Time</label>
+            <input type="time" class="form-control" ng-model="edit.event.date" />
+        </div>
+        <div class="form-group">
+            <label>End Time</label>
+            <input type="time" class="form-control" ng-model="edit.event.endDate" />
+        </div>
+        <div class="form-group">
+            <label>Number of Volunteers</label>
+            <input type="number" class="form-control" ng-model="edit.event.totalSlots" required name="totalSlots" />
+            <div class="text-danger" ng-show="edit.submitted && edit.form.totalSlots.$error.required">Number of Volunteers is required.</div>
+        </div>
+        <div class="form-group">
+            <label>Location</label>
+            <input type="text" class="form-control" ng-model="edit.event.location" />
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" ng-model="edit.event.description" />
+        </div>
+        <div class="form-group">
+            <label>Requirements</label>
+            <input type="text" class="form-control" ng-model="edit.event.requirements" />
+        </div>
+        <div class="form-group">
+            <hr />
+            <input type="submit" class="btn btn-primary" value="Save" />
+            <input type="button" class="btn btn-default" value="Cancel" ui-sref="event-list" />
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,81 @@
+.person-list .page-toolbar {
+    position: fixed;
+    background-color: #060606;
+    color: #fff;
+    padding: 5px;
+    left: 0;
+    right: 0;
+    top: 63px;
+    z-index: 1;
+    will-change: transform;
+}
+
+
+.person-list .filters {
+    position: fixed;
+    left: 0;
+    top: 93px;
+    width: 200px;
+    padding: 5px;
+    background-color: #242424;
+    color: #fff;
+    z-index: 1;
+    transition: transform .3s ease-in-out;
+    will-change: transform;
+}
+
+.person-list .filters.ng-hide {
+    transform: translateX(-220px);
+}
+
+.person-list .filters .toggle {
+    color: #b9b9b9;
+    padding: 5px;
+}
+
+.person-list .filters .toggle.active {
+    color: white;
+}
+
+.person-list .fa-search {
+}
+
+.person-list .filters-clear {
+    margin-top: 67px;
+    z-index: 0;
+    position: relative;
+    padding-top: 1px; /* disable margin collapsing */
+}
+
+
+
+
+.people {
+}
+
+.people .kc-avatar {
+    float: left;
+    margin-right: 5px;
+}
+
+.people li {
+    padding: 5px;
+    line-height: 48px;
+}
+
+.people .label {
+    display: block;
+    width: 120px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.people .label-approved {
+    background-color: #77b300;
+    color: #fff;
+}
+
+.people .label-denied {
+    background-color: #cc0000;
+    color: #fff;
+}

@@ -1,0 +1,15 @@
+{
+  "name": "keychain",
+  "dependencies": {
+    "angular-off-click": "~0.0.8",
+    "angular-bootstrap": "~0.14.3",
+    "font-awesome": "~4.4.0",
+    "angular-ui-router": "~0.2.15",
+    "angular-animate": "~1.4.7",
+    "bootstrap": "~3.3.5",
+    "nz-toggle": "~2.1.0",
+    "ngstorage": "~0.3.9",
+    "angular": "~1.4.8",
+    "ngImgCrop": "~0.3.2"
+  }
+}

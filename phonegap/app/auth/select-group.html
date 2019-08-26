@@ -1,0 +1,32 @@
+<div ng-controller="SelectGroupController as selectGroup">
+    <form name="selectGroup.form" novalidate ng-submit="selectGroup.verifyKeyCode()">
+        <div class="container-fluid" style="max-width: 500px;">
+            <h1>Sign Up</h1>
+            <div class="form-group">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Let's get started!</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="text-center text-info">
+                            <i class="fa fa-smile-o fa-4x" style="margin-bottom: 10px;"></i>
+                        </div>
+                        <p>To sign up, first tell us which group you're with. Enter your <strong>Key Code</strong> below.</p>
+                        <p>If you do not have a Key Code, check with an officer from your group.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Key Code</label>
+                <input type="text" class="form-control" ng-model="selectGroup.keyCode" name="keyCode" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+                <div class="text-danger" ng-show="selectGroup.submitted && selectGroup.form.keyCode.$error.required">Key Code is required.</div>
+            </div>
+            <div class="form-group">
+                <hr>
+            <input type="submit" class="btn btn-primary btn-block" value="Submit" />
+            <input type="button" class="btn btn-default btn-block" value="Cancel" ui-sref="start-page" />
+            </div>
+        </div>
+    </form>
+</div>

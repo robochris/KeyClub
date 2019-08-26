@@ -1,0 +1,12 @@
+.toggle-form-group {
+	max-height: 100px;
+    transition: all .3s ease-in-out;
+}
+
+.toggle-form-group label {
+	margin-top: 10px;
+}
+
+.toggle-form-group[disabled] {
+	opacity: 0.5;
+}

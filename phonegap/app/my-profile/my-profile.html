@@ -1,0 +1,86 @@
+<div ng-controller="MyProfileController as myProfile">
+    <div style="max-width: 500px; margin-left: auto; margin-right: auto;">
+        <form name="myProfile.form" novalidate ng-submit="myProfile.save()">
+            <div style="margin-left: 10px; margin-right: 10px;">
+                <div class="form-group">
+                    <div class="photo">
+                        <div style="max-width: 200px; margin-left: auto; margin-right: auto;">
+                            <div ng-show="myProfile.setPhotoOptionsVisible" class="capture-type" off-click="myProfile.setPhotoOptionsVisible = false" off-click-filter="'#showPhotoOptionsButton,#showPhotoOptionsButton2'">
+                                <input type="button" class="btn btn-primary btn-block" value="Take Picture" ng-click="myProfile.setPhoto('camera')" />
+                                <input type="button" class="btn btn-primary btn-block" value="Choose Existing" ng-click="myProfile.setPhoto('browse')" />
+                                <input type="button" class="btn btn-default btn-block" value="Cancel" ng-click="myProfile.setPhotoOptionsVisible = false" />
+                            </div>
+                            <div>
+                                <img id="showPhotoOptionsButton2" ng-src="{{myProfile.avatarUrl}}" error-src="assets/default-avatar.png" class="img-circle" ng-click="myProfile.setPhotoOptionsVisible = !myProfile.setPhotoOptionsVisible" />
+                            </div>
+                            <div ng-style="{'visibility': myProfile.setPhotoOptionsVisible?'hidden':'visible'}">
+                                <input id="showPhotoOptionsButton" type="button" class="btn btn-default" value="Set Photo" ng-click="myProfile.setPhotoOptionsVisible = true" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label>Name</label>
+                    <div class="row">
+                    <div class="col-xs-6">
+                        <input type="text" class="form-control" ng-model="myProfile.profile.firstName" placeholder="First Name" />
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" class="form-control" ng-model="myProfile.profile.lastName" placeholder="Last Name" />
+                    </div>
+                </row>
+
+                </div>
+                <div class="form-group">
+                        <hr />
+                        <input type="submit" class="btn btn-primary btn-block" value="Save" />
+                </div>
+                <div class="form-group">
+                    <hr />
+                </div>
+            </div>
+        </form>
+
+
+
+        <form name="myProfile.passwordForm" novalidate ng-submit="myProfile.changePassword()">
+
+                <div class="panel panel-warning" style="background-color: transparent;">
+                    <div class="panel-heading">
+                        Change Password
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label>Old Password</label>
+                            <input type="password" class="form-control" ng-model="myProfile.oldPassword" />
+                        </div>
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input type="password" class="form-control" ng-model="myProfile.newPassword" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-block" value="Save Password" />
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
+
+
+    <div style="visibility: hidden">
+        <input type="file" id="fileInput" accept="image/*" />
+    </div>
+
+    <div class="cropArea" ng-show="myProfile.cropVisible">
+        <div class="img">
+            <img-crop image="myProfile.myImage" result-image="myProfile.myCroppedImage" result-image-format="image/jpeg"></img-crop>
+        </div>
+        <div class="cropToolbar">
+            <input type="button" class="btn btn-primary" value="ok" ng-click="myProfile.cropOk(); myProfile.cropVisible = false">
+            <input type="button" class="btn btn-default" value="cancel" ng-click="myProfile.cropVisible = false">
+        </div>
+    </div>
+    <div class="overlay" ng-show="myProfile.setPhotoOptionsVisible"></div>
+</div>

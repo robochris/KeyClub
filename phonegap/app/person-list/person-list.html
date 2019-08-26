@@ -1,0 +1,59 @@
+<div ng-controller="PersonListController as personList" class="person-list">
+
+    <div class="page-toolbar clearfix">
+        <div class="filter-toggle" ng-click="personList.filterToggle = !personList.filterToggle" id="showFiltersButton">
+            <i class="fa fa-filter"></i> Showing {{personList.friendlyFilterString()}} ({{personList.filteredPeople.length}})
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control" ng-model="personList.search" ng-change="personList.updateFilteredPeople()" placeholder="Search">
+        </div>
+    </div>
+
+    <div class="filters" ng-show="personList.filterToggle"  off-click="personList.filterToggle = false" off-click-filter="'#showFiltersButton'">
+        <div class="toggle" ng-class="{active: personList.showApproved}" ng-click="personList.showApproved = !personList.showApproved; personList.updateFilteredPeople()">
+            <i class="fa fa-check-square-o fa-fw" ng-class="{'fa-square-o': !personList.showApproved}"></i>
+            Approved
+        </div>
+        <div class="toggle" ng-show="base.currentUser.isOfficer" ng-class="{active: personList.showDenied}" ng-click="personList.showDenied = !personList.showDenied; personList.updateFilteredPeople()">
+            <i class="fa fa-check-square-o fa-fw" ng-class="{'fa-square-o': !personList.showDenied}"></i>
+            Denied
+        </div>
+        <div style="margin-bottom: 30px;"></div>
+        <div class="toggle" ng-class="{active: personList.showMembers}" ng-click="personList.showMembers = !personList.showMembers; personList.updateFilteredPeople()">
+            <i class="fa fa-check-square-o fa-fw" ng-class="{'fa-square-o': !personList.showMembers}"></i>
+            Members
+        </div>
+        <div class="toggle" ng-class="{active: personList.showOfficers}" ng-click="personList.showOfficers = !personList.showOfficers; personList.updateFilteredPeople()">
+            <i class="fa fa-check-square-o fa-fw" ng-class="{'fa-square-o': !personList.showOfficers}"></i>
+            Officers
+        </div>
+    </div>
+
+    <div class="filters-clear">
+        <ul class="people list-unstyled">
+            <li ng-repeat="person in personList.filteredPeople" ui-sref="edit-person({personId: person._id})" class="repeated-item clearfix">
+                <avatar person="person"></avatar>
+                {{person.displayName}}
+
+
+                <div class="pull-right text-right">
+
+                    <span class="label label-primary label-denied" ng-show="{{person.approved !== true}}">
+                        <i class="fa fa-times-circle"></i>
+                        Denied
+                    </span>
+
+                </div>
+            </li>
+        </ul>
+
+        <div ng-if="personList.peopleLoaded && personList.filteredPeople.length == 0" style="text-align: center; margin-top: 40px;">
+            <i class="fa fa-meh-o" style="color: #B9B91B; font-size: 60px; margin-bottom: 10px;"></i>
+            <br /> Oops! No people found.
+            <br /> Try adjusting your filters.
+        </div>
+
+    </div>
+    <div class="overlay" ng-show="personList.filterToggle"></div>
+</div>
